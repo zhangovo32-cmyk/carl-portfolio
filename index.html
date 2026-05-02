@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CARL-1 · Zhang Haotian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="ambient-rails" aria-hidden="true">
+  <canvas id="ambient-rails-canvas"></canvas>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">
+    <span class="nav-logo-dot"></span>
+    <span>CARL-1 / v0.26</span>
+  </div>
+  <div class="nav-links">
+    <a href="#env">Env</a>
+    <a href="#abstract">Abstract</a>
+    <a href="#projects">Works</a>
+    <a href="#contact">Contact</a>
+    <span id="live-time">HZ 00:00:00</span>
+    <button class="lang-toggle">EN / 中</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="assets/desk.png?v=2" alt="Carl's desk: sketches pinned on the wall, an open sketchbook, a monitor, headphones, a green mug — the training environment">
+    <div class="hero-bg-scan"></div>
+  </div>
+  <div class="hero-glow"></div>
+
+  <!-- annotation pins over the desk -->
+  <span class="hero-pin p1">↗ sketches · training data</span>
+  <span class="hero-pin p2">↗ mug · coolant</span>
+  <span class="hero-pin p3">↗ headphones · audio I/O</span>
+  <span class="hero-pin p4">↙ active sketchbook</span>
+
+  <div class="hero-meta">
+    <span data-en="OPEN-WEIGHT · HUMAN-BUILT" data-zh="开源权重 · 人类打造">OPEN-WEIGHT · HUMAN-BUILT</span>
+    <span data-en="SHIJIAZHUANG, CN · EST. 2003" data-zh="中国石家庄 · 生于 2003">SHIJIAZHUANG, CN · EST. 2003</span>
+    <span data-en="RELEASE NOTE — 002" data-zh="发布公告 — 002">RELEASE NOTE — 002</span>
+  </div>
+
+  <h1 class="hero-title"><span data-split>CARL</span><span class="accent" data-split>-1</span></h1>
+
+  <div class="hero-sub">
+    <p class="hero-tagline">
+      <span data-en="An environmental designer translating memory," data-zh="一名将记忆、空间与媒介">An environmental designer translating memory,</span>
+      <span data-en="space, and media into visual systems." data-zh="转译为视觉系统的环境设计师。">space, and media into visual systems.</span>
+      <span data-en="Trained on sketches, campaigns, AI workflows," data-zh="训练数据包括草图、campaign、AI 工作流，">Trained on sketches, campaigns, AI workflows,</span>
+      <span data-en="and too many late-night critiques." data-zh="以及太多次深夜 crit。">and too many late-night critiques.</span>
+      <br>
+      <span class="dim" data-en="Also goes by Zhang Haotian." data-zh="也叫 Carl。">Also goes by Zhang Haotian.</span>
+    </p>
+
+    <div class="hero-badge">
+      <div class="row"><span class="k">Status</span><span class="v">● Online</span></div>
+      <div class="row"><span class="k">Role</span><span class="v">Env. Design</span></div>
+      <div class="row"><span class="k">Params</span><span class="v">1.78 m</span></div>
+      <div class="row"><span class="k">License</span><span class="v">Apache-coffee</span></div>
+    </div>
+  </div>
+
+  <div class="hero-scroll" data-en="Scroll to continue" data-zh="向下滚动继续">Scroll to continue</div>
+</section>
+
+<!-- TRAINING ENVIRONMENT -->
+<section id="env" class="reveal">
+  <div class="section-label" data-en="§ 00 — Training environment" data-zh="§ 00 — 训练环境">§ 00 — Training environment</div>
+  <div class="bench-head">
+    <h2 class="bench-title" data-en="The environment that trained my <em>design language</em>." data-zh="训练出我<em>设计语言</em>的环境。">The environment that trained my <em>design language</em>.</h2>
+    <p class="bench-note" data-en="One desk · HBU-UCLAN · tools in rotation: sketch / AI / rendering / brand thinking." data-zh="一张桌子 · HBU-UCLAN · 循环工具：草图 / AI / 渲染 / 品牌思考。">One desk · HBU-UCLAN · tools in rotation: sketch / AI / rendering / brand thinking.</p>
+  </div>
+
+  <div class="desk-readout">
+    <div><span class="k" data-en="Base" data-zh="基地">Base</span><span class="v">HBU-UCLAN</span></div>
+    <div><span class="k" data-en="Major" data-zh="专业">Major</span><span class="v">Interior Design</span></div>
+    <div><span class="k" data-en="Inputs" data-zh="输入">Inputs</span><span class="v" data-en="Environment · AI · Brand" data-zh="环境 · AI · 品牌">Environment · AI · Brand</span></div>
+    <div><span class="k" data-en="Output" data-zh="输出">Output</span><span class="v" data-en="Future spatial experience" data-zh="未来空间体验">Future spatial experience</span></div>
+  </div>
+</section>
+
+<!-- ABSTRACT -->
+<section id="abstract" class="reveal">
+  <span id="about" class="section-anchor" aria-hidden="true"></span>
+  <div class="section-label" data-en="§ 01 — Abstract" data-zh="§ 01 — 摘要">§ 01 — Abstract</div>
+  <div class="abstract">
+    <dl class="abstract-meta">
+      <dt data-en="Author" data-zh="作者">Author</dt>
+      <dd data-en="Zhang Haotian / Carl" data-zh="张浩天 / Carl">Zhang Haotian / Carl</dd>
+      <dt data-en="Affiliation" data-zh="所属">Affiliation</dt>
+      <dd data-en="HBU-UCLAN · Interior Design" data-zh="HBU-UCLAN · 室内设计">HBU-UCLAN · Interior Design</dd>
+      <dt data-en="Base" data-zh="所在地">Base</dt>
+      <dd data-en="Shijiazhuang, CN" data-zh="中国石家庄">Shijiazhuang, CN</dd>
+      <dt data-en="Submitted" data-zh="提交">Submitted</dt>
+      <dd>2026-04-19</dd>
+      <dt data-en="Keywords" data-zh="关键词">Keywords</dt>
+      <dd data-en="environmental design, AI empowerment, spatial regeneration, creative director" data-zh="环境设计 · AI 赋能 · 空间再生 · 创意主理人">environmental design, AI empowerment, spatial regeneration, creative director</dd>
+    </dl>
+
+    <div class="abstract-body">
+      <p data-en="We introduce Carl — Zhang Haotian, an Interior Design student at HBU-UCLAN, trained end-to-end on the problem of putting humans into rooms they actually want to stand in. The model exhibits strong performance on <span class='highlight'>plan drawing</span>, <span class='highlight'>material matching</span>, and holding coffee while critiquing someone else's thesis." data-zh="我们发布 Carl —— 张浩天，HBU-UCLAN 室内设计学生，端到端训练于「让人愿意待在某个房间里」这个问题。该模型在<span class='highlight'>平面图绘制</span>、<span class='highlight'>材料搭配</span>、以及「端着咖啡点评别人毕设」这三项任务上表现突出。">
+        We introduce Carl — Zhang Haotian, an Interior Design student at HBU-UCLAN, trained end-to-end on the problem of putting humans into rooms they actually want to stand in. The model exhibits strong performance on <span class="highlight">plan drawing</span>, <span class="highlight">material matching</span>, and holding coffee while critiquing someone else's thesis.
+      </p>
+      <p data-en="A future-space explorer connecting <span class='accent'>design</span>, brand, and technology." data-zh="连接<span class='accent'>设计</span>、品牌与技术的未来空间探索者。">
+        A future-space explorer connecting <span class="accent">design</span>, brand, and technology.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="reveal">
+  <div class="works-backdrop" aria-hidden="true">WORKS</div>
+  <div class="section-label" data-en="§ 02 — Works / Hover to flip" data-zh="§ 02 — 作品 / 悬停翻转">§ 02 — Works / Hover to flip</div>
+  <div class="bench-head">
+    <h2 class="bench-title" data-en="<em>Selected</em> outputs of the model." data-zh="模型的<em>精选</em>输出。"><em>Selected</em> outputs of the model.</h2>
+    <p class="bench-note" data-en="Hover (or tap) a card to read the thinking behind it." data-zh="悬停（或点击）任意卡片以阅读背后的思考。">Hover (or tap) a card to read the thinking behind it.</p>
+  </div>
+
+  <div class="projects-grid">
+    <article class="project wide tall">
+      <div class="project-inner">
+        <div class="project-face project-front">
+          <div class="project-tag"><span>W-01 · 2025</span><span data-en="Agrarian · chicken coop" data-zh="乡建 · 鸡舍">Agrarian · chicken coop</span></div>
+          <div class="project-cover" style="background-image:url('assets/coop-section.png');"></div>
+          <h3 class="project-title" data-en="“Wanderer” — a chicken coop that thinks it's a pavilion." data-zh="「漫游者」—— 一座以为自己是建筑装置的鸡舍。">"Wanderer" — a chicken coop that thinks it's a pavilion.</h3>
+        </div>
+        <div class="project-face project-back">
+          <div class="project-back-meta">W-01 / AGRARIAN · PIN 739232 / 2025</div>
+          <h3 class="project-back-title" data-en="Mother-hen geometry, on stilts." data-zh="母鸡的几何学，架空而立。">Mother-hen geometry, on stilts.</h3>
+          <p class="project-back-body" data-en="Prefabricated modular timber frame with UV-resistant skin, elevated on treated wooden columns above rats and mud. Inside: zoned activity / egg-laying / storage; perforated baffles turn wind into breeze; pull-down egg boxes collect from the outside. Built for a village workshop, from standard lumber, by the people who'd use it." data-zh="预制模块化木框架 + UV 涂层，架空在防鼠木柱之上。内部分区：活动、产蛋、收纳；穿孔挡风板把硬风打散成微风；翻盖蛋箱从外侧拾取。用标准木材，由使用它的村里工坊自己搭。">Prefabricated modular timber frame with UV-resistant skin, elevated on treated wooden columns. Interior zoned for activity / egg-laying / storage; perforated baffles soften wind; pull-down egg boxes collect from the outside.</p>
+          <span class="project-back-cta" data-en="Case study →" data-zh="案例研究 →">Case study →</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="project tall">
+      <div class="project-inner">
+        <div class="project-face project-front">
+          <div class="project-tag"><span>W-02 · 2026</span><span data-en="Furniture · AI-assisted" data-zh="家具 · AI 赋能">Furniture · AI-assisted</span></div>
+          <div class="project-cover" style="background-image:url('assets/wow-alternative-furniture.png');"></div>
+          <h3 class="project-title" data-en="WOW Alternative Furniture — a lounge object for future interiors." data-zh="WOW Alternative Furniture —— 面向未来室内的休憩家具。">WOW Alternative Furniture — a lounge object for future interiors.</h3>
+        </div>
+        <div class="project-face project-back">
+          <div class="project-back-meta">W-02 / ALTERNATIVE FURNITURE · 2026</div>
+          <h3 class="project-back-title" data-en="Furniture as a small spatial system." data-zh="把家具作为一个微型空间系统。">Furniture as a small spatial system.</h3>
+          <p class="project-back-body" data-en="A furniture exploration that treats seating as atmosphere rather than a single object. Faceted surfaces, warm timber, and AI-assisted visualization test how furniture can hold posture, light, and brand-like emotion inside an interior scene." data-zh="一次将座椅视为氛围而非单一物件的家具探索。通过折面结构、温暖木质与 AI 辅助视觉化，测试家具如何在室内场景中承载姿态、光线与品牌化情绪。">A furniture exploration that treats seating as atmosphere rather than a single object. Faceted surfaces, warm timber, and AI-assisted visualization test how furniture can hold posture, light, and brand-like emotion inside an interior scene.</p>
+          <a class="project-back-cta" href="assets/wow-alternative-furniture.pdf" target="_blank" rel="noopener" data-en="View board →" data-zh="查看展板 →">View board →</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-inner">
+        <div class="project-face project-front">
+          <div class="project-tag"><span>W-03 · 2024</span><span data-en="Interior" data-zh="室内">Interior</span></div>
+          <div class="project-placeholder" data-label="interior · 1600×1200" data-en="interior · 1600×1200" data-zh="室内 · 1600×1200"></div>
+          <h3 class="project-title" data-en="A 26 m² apartment for a person with 27 m² of books." data-zh="一间 26 平方米的公寓，给一个拥有 27 平方米书的人。">A 26 m² apartment for a person with 27 m² of books.</h3>
+        </div>
+        <div class="project-face project-back">
+          <div class="project-back-meta">W-03 / INTERIOR</div>
+          <h3 class="project-back-title" data-en="Storage as architecture." data-zh="收纳即建筑。">Storage as architecture.</h3>
+          <p class="project-back-body" data-en="Full-height oak shelving integrated with structure. Bed folds. Dining folds. Owner does not fold." data-zh="与结构一体化的橡木通高书架。床会折，餐桌会折，主人不折。">Full-height oak shelving integrated with structure.</p>
+          <span class="project-back-cta">Case study →</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-inner">
+        <div class="project-face project-front">
+          <div class="project-tag"><span>W-04 · 2026</span><span data-en="Retail · pop-up" data-zh="零售 · 快闪">Retail · pop-up</span></div>
+          <div class="project-cover" style="background-image:url('assets/retail-pop-up.png');"></div>
+          <h3 class="project-title" data-en="Retail Pop-up Pavilion — a glowing brand node in the city." data-zh="Retail Pop-up Pavilion —— 城市中的发光品牌节点。">Retail Pop-up Pavilion — a glowing brand node in the city.</h3>
+        </div>
+        <div class="project-face project-back">
+          <div class="project-back-meta">W-04 / RETAIL EXPERIENCE · 2026</div>
+          <h3 class="project-back-title" data-en="Retail as an urban stage." data-zh="把零售空间转化为城市舞台。">Retail as an urban stage.</h3>
+          <p class="project-back-body" data-en="A compact retail pavilion designed as a visible urban attractor. Curved volumes, transparent edges, and halo-like lighting turn the store into a public-facing brand experience between office, dining, and street movement." data-zh="一个被设计成城市吸引点的小型零售展亭。弧形体量、透明边界与光环式照明，让店铺在办公、餐饮与街道流线之间成为面向公众的品牌体验。">A compact retail pavilion designed as a visible urban attractor. Curved volumes, transparent edges, and halo-like lighting turn the store into a public-facing brand experience between office, dining, and street movement.</p>
+          <a class="project-back-cta" href="assets/retail-pop-up.pdf" target="_blank" rel="noopener" data-en="View board →" data-zh="查看展板 →">View board →</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project wide">
+      <div class="project-inner">
+        <div class="project-face project-front">
+          <div class="project-tag"><span>W-05 · 2025</span><span data-en="Exhibition · cultural narrative" data-zh="展陈 · 文化叙事">Exhibition · cultural narrative</span></div>
+          <div class="project-cover" style="background-image:url('assets/zhoubi-board-02.jpg');background-position:center top;"></div>
+          <h3 class="project-title" data-en="Hidden Mathematics in the 24 Solar Terms — a Zhoubi Suanjing exhibition." data-zh="藏在二十四节气里的数学智慧 ——《周髀算经》展览。">Hidden Mathematics in the 24 Solar Terms — a Zhoubi Suanjing exhibition.</h3>
+        </div>
+        <div class="project-face project-back">
+          <div class="project-back-meta">W-05 / ZHOUBI SUANJING EXHIBITION · 2025</div>
+          <h3 class="project-back-title" data-en="Ancient mathematics as immersive space." data-zh="把古代数学转译为沉浸式空间。">Ancient mathematics as immersive space.</h3>
+          <p class="project-back-body" data-en="An exhibition translating Zhoubi Suanjing into four spatial chapters: Gougu geometry, shadow measurement, Qiheng diagrams, and Gaitian cosmology. The space uses modular blocks, light, interactive measurement, and astronomical imagery to connect traditional science with contemporary exhibition experience." data-zh="一个将《周髀算经》转译为四个空间章节的展览：勾股圆方、日高测影、七衡图与盖天说。空间通过模块体块、光、互动测量与天文意象，把传统科学与当代展陈体验连接起来。">An exhibition translating Zhoubi Suanjing into four spatial chapters: Gougu geometry, shadow measurement, Qiheng diagrams, and Gaitian cosmology. The space uses modular blocks, light, interactive measurement, and astronomical imagery to connect traditional science with contemporary exhibition experience.</p>
+          <div class="project-back-actions">
+            <a class="project-back-cta" href="assets/zhoubi-board-01.jpg" target="_blank" rel="noopener" data-en="Board 01 →" data-zh="展板 01 →">Board 01 →</a>
+            <a class="project-back-cta" href="assets/zhoubi-board-02.jpg" target="_blank" rel="noopener" data-en="Board 02 →" data-zh="展板 02 →">Board 02 →</a>
+            <a class="project-back-cta" href="assets/zhoubi-board-03.jpg" target="_blank" rel="noopener" data-en="Board 03 →" data-zh="展板 03 →">Board 03 →</a>
+            <a class="project-back-cta" href="assets/zhoubi-board-04.jpg" target="_blank" rel="noopener" data-en="Board 04 →" data-zh="展板 04 →">Board 04 →</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="project wide tall">
+      <div class="project-inner">
+        <div class="project-face project-front">
+          <div class="project-tag"><span>W-06 · 2026</span><span data-en="Landscape · water memory" data-zh="景观 · 水运记忆">Landscape · water memory</span></div>
+          <div class="project-cover" style="background-image:url('assets/fuhe-lock-hero.png');background-position:center center;"></div>
+          <h3 class="project-title" data-en="The flattened river, made visible again." data-zh="被抹平的河流，重新显影。">The flattened river, made visible again.</h3>
+        </div>
+        <div class="project-face project-back">
+          <div class="project-back-meta">W-06 / FUHE LOCK REGENERATION · 2026</div>
+          <h3 class="project-back-title" data-en="An abandoned lock as public memory infrastructure." data-zh="以废弃船闸重启府河的公共记忆。">An abandoned lock as public memory infrastructure.</h3>
+          <p class="project-back-body" data-en="After the Fuhe River was reorganized as modern park scenery, its working history slipped to the edge. This project takes the abandoned ship lock as its core, using spatial narrative, material contrast, and dynamic routes to re-expose hidden water-transport memory as an urban public experience." data-zh="府河被现代公园景观整理之后，真正的历史反而退到边缘。本项目以废弃船闸为核心，通过空间叙事、材料对比与动态路径，将被遮蔽的水运记忆重新显影为城市公共体验。">After the Fuhe River was reorganized as modern park scenery, its working history slipped to the edge. This project takes the abandoned ship lock as its core, using spatial narrative, material contrast, and dynamic routes to re-expose hidden water-transport memory as an urban public experience.</p>
+          <a class="project-back-cta" href="assets/fuhe-lock-hero.png" target="_blank" rel="noopener" data-en="View hero →" data-zh="查看主视觉 →">View hero →</a>
+        </div>
+      </div>
+    </article>
+  </div>
+  <div class="works-progress" aria-hidden="true"><span></span></div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline" class="reveal">
+  <div class="section-label" data-en="§ 03 — Changelog / git log" data-zh="§ 03 — 更新日志 / git log">§ 03 — Changelog / git log</div>
+  <div class="bench-head">
+    <h2 class="bench-title" data-en="Every <em>commit</em> that got me here." data-zh="一路走来的每一次<em>提交</em>。">Every <em>commit</em> that got me here.</h2>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">2026 · 06</span>
+      <span class="timeline-hash">4a9c31</span>
+      <div class="timeline-msg" data-en="graduated from HBU-UCLAN" data-zh="毕业于 HBU-UCLAN">graduated from HBU-UCLAN
+        <span class="body" data-en="Interior Design, focused on spatial narrative, environment, and visual systems." data-zh="室内设计专业，关注空间叙事、环境体验与视觉系统。">Interior Design, focused on spatial narrative, environment, and visual systems.</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2025 · 12</span>
+      <span class="timeline-hash">1f0ee8</span>
+      <div class="timeline-msg" data-en="intern, Keep - Client Commercialization Center" data-zh="实习：Keep - 客户商业化中心">intern, Keep - Client Commercialization Center
+        <span class="body" data-en="worked around brand communication, commercial scenarios, and user-facing campaign experience." data-zh="参与品牌沟通、商业化场景与面向用户的 campaign 体验相关工作。">worked around brand communication, commercial scenarios, and user-facing campaign experience.</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2025 · 07</span>
+      <span class="timeline-hash">c27bff</span>
+      <div class="timeline-msg" data-en="BBDO - Wild Training Camp intern" data-zh="实习：BBDO - 野兽特训营">BBDO - Wild Training Camp intern
+        <span class="body" data-en="trained through briefs, creative strategy, campaign thinking, and fast idea iteration." data-zh="在 brief、创意策略、campaign 思维与快速提案迭代中训练创意判断。">trained through briefs, creative strategy, campaign thinking, and fast idea iteration.</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2024 · 11</span>
+      <span class="timeline-hash">b3d40a</span>
+      <div class="timeline-msg" data-en="exchange semester, Milan" data-zh="交换一学期 · 米兰">exchange semester, Milan
+        <span class="body" data-en="learned: a good piazza is 60% shade, 40% pretending." data-zh="领悟：一个好广场是 60% 的阴凉和 40% 的假装。">learned: a good piazza is 60% shade, 40% pretending.</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2023 · 04</span>
+      <span class="timeline-hash">7e1122</span>
+      <div class="timeline-msg" data-en="first real client — a neighborhood café" data-zh="第一个真实客户 —— 一家社区咖啡馆">first real client — a neighborhood café
+        <span class="body" data-en="traded the work for espresso. Favorable exchange rate." data-zh="用设计换了浓缩咖啡。汇率划算。">traded the work for espresso. Favorable exchange rate.</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2022 · 09</span>
+      <span class="timeline-hash">000001</span>
+      <div class="timeline-msg" data-en="init" data-zh="初始化">init
+        <span class="body" data-en="enrolled. Bought a 2B pencil. Nothing was the same." data-zh="入学。买了支 2B 铅笔。从此人生天翻地覆。">enrolled. Bought a 2B pencil. Nothing was the same.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PEER REVIEWS -->
+<section id="reviews" class="reveal">
+  <div class="section-label" data-en="§ 04 — Peer review / Very legitimate" data-zh="§ 04 — 同行评议 / 非常正规">§ 04 — Peer review / Very legitimate</div>
+  <div class="bench-head">
+    <h2 class="bench-title" data-en="<em>Rigorously</em> evaluated by three (3) anonymous reviewers." data-zh="由三名（3）匿名评审员<em>严格</em>评估。"><em>Rigorously</em> evaluated by three (3) anonymous reviewers.</h2>
+    <p class="bench-note" data-en="Conflicts of interest: extensive. Disclosures: none." data-zh="利益冲突：大量。披露：无。">Conflicts of interest: extensive. Disclosures: none.</p>
+  </div>
+
+  <div class="reviews">
+    <div class="review">
+      <div class="review-rating">Reviewer #1 · Accept</div>
+      <p class="review-body" data-en="“The work demonstrates that a 21-year-old can, in fact, hold an opinion about a door. Recommend acceptance.”" data-zh="「该作品表明一名 21 岁学生确实能对一扇门持有观点。建议接收。」">"The work demonstrates that a 21-year-old can, in fact, hold an opinion about a door. Recommend acceptance."</p>
+      <div class="review-foot">
+        <span class="name" data-en="Prof. L." data-zh="L 教授">Prof. L.</span>
+        <span data-en="Thesis advisor · reluctantly impressed" data-zh="毕设导师 · 不情愿地印象深刻">Thesis advisor · reluctantly impressed</span>
+      </div>
+    </div>
+    <div class="review">
+      <div class="review-rating">Reviewer #2 · Weak accept</div>
+      <p class="review-body" data-en="“I'm his mom. He cleaned his room once. The spatial sensitivity checks out.”" data-zh="「我是他妈。他收拾过一次房间。空间感应是存在的。」">"I'm his mom. He cleaned his room once. The spatial sensitivity checks out."</p>
+      <div class="review-foot">
+        <span class="name" data-en="Mrs. Zhang" data-zh="张女士">Mrs. Zhang</span>
+        <span data-en="Conflict of interest: biological" data-zh="利益冲突：亲生">Conflict of interest: biological</span>
+      </div>
+    </div>
+    <div class="review">
+      <div class="review-rating">Reviewer #3 · Accept w/ revisions</div>
+      <p class="review-body" data-en="“Good kerning on the title slide. Recommend minor revisions: fewer black t-shirts.”" data-zh="「标题页字距不错。建议小幅修改：少穿点黑 T 恤。」">"Good kerning on the title slide. Recommend minor revisions: fewer black t-shirts."</p>
+      <div class="review-foot">
+        <span class="name" data-en="Anonymous" data-zh="匿名">Anonymous</span>
+        <span data-en="Studio critic · drinks too much oat latte" data-zh="工作室评图人 · 燕麦拿铁喝得有点多">Studio critic · drinks too much oat latte</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="reveal">
+  <div class="section-label" data-en="§ 05 — Deployment" data-zh="§ 05 — 部署">§ 05 — Deployment</div>
+
+  <h2 class="contact-headline" data-en="You've evaluated the model. <em>Deploy</em> it — <a href='mailto:hello@carl.design'>hello@carl.design</a>." data-zh="你已经评估完这个模型。现在可以<em>部署</em>它 —— <a href='mailto:hello@carl.design'>hello@carl.design</a>。">You've evaluated the model. <em>Deploy</em> it — <a href="mailto:hello@carl.design">hello@carl.design</a>.</h2>
+
+  <div class="contact-grid">
+    <div>
+      <h4 data-en="Work" data-zh="合作">Work</h4>
+      <a href="mailto:hello@carl.design">hello@carl.design</a>
+      <a href="#">View CV (PDF)</a>
+      <a href="#">Download portfolio</a>
+    </div>
+    <div>
+      <h4 data-en="Elsewhere" data-zh="其他平台">Elsewhere</h4>
+      <a href="#">Instagram / @carl.plans</a>
+      <a href="#">小红书 / CARL-1</a>
+      <a href="#">Are.na / carl</a>
+      <a href="#">LinkedIn</a>
+    </div>
+    <div>
+      <h4 data-en="Available for" data-zh="接受">Available for</h4>
+      <a href="#" data-en="Internships · summer 2026" data-zh="实习 · 2026 夏">Internships · summer 2026</a>
+      <a href="#" data-en="Small interiors · on weekends" data-zh="小型室内项目 · 周末">Small interiors · on weekends</a>
+      <a href="#" data-en="Coffee · always" data-zh="咖啡 · 永远">Coffee · always</a>
+    </div>
+  </div>
+
+  <div class="bibtex">
+    <button class="bibtex-copy">Copy BibTeX</button>
+<pre>@misc{<span class="k">carl2026</span>,
+  title        = <span class="s">{CARL-1: An Open-Weight Environmental Design Intelligence}</span>,
+  author       = <span class="s">{Zhang, Haotian (Carl)}</span>,
+  year         = <span class="s">{2026}</span>,
+  howpublished = <span class="s">{Portfolio website}</span>,
+  note         = <span class="s">{A human, trained on coffee. Weights available on request via email.}</span>
+}</pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-tagline" data-en="CARL-1 / an open-weight human. Designed and written by Zhang Haotian. No LLMs were harmed in the making of this site — though one was consulted." data-zh="CARL-1 / 一个开源权重的人类。由张浩天设计并撰写。本网站制作过程中无大模型受伤害 —— 虽然咨询过一个。">
+    CARL-1 / an open-weight human. Designed and written by Zhang Haotian.
+  </div>
+  <div>
+    <div><strong>© 2026</strong> Zhang Haotian / Carl</div>
+    <div data-en="Last commit · 2026-04-19" data-zh="最后提交 · 2026-04-19">Last commit · 2026-04-19</div>
+  </div>
+</footer>
+
+<!-- Tweaks panel -->
+<div class="tweaks-panel" id="tweaks-panel">
+  <h5>Accent color</h5>
+  <div class="swatches"></div>
+  <div style="color:#555;font-size:10px;line-height:1.5;margin-top:8px">Pick a vibe. Saved to project.</div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
