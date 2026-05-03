@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<div id="custom-cursor" class="custom-cursor" aria-hidden="true"></div>
+
 <div class="ambient-rails" aria-hidden="true">
   <canvas id="ambient-rails-canvas"></canvas>
 </div>
@@ -96,6 +98,16 @@
   <div class="section-label" data-en="§ 01 — Abstract" data-zh="§ 01 — 摘要">§ 01 — Abstract</div>
   <div class="abstract">
     <dl class="abstract-meta">
+      <div class="profile-chip" aria-label="Zhang Haotian profile">
+        <span class="profile-avatar" aria-hidden="true">
+          <img src="assets/profile-avatar.jpg" alt="">
+        </span>
+        <span class="profile-id">
+          <strong data-en="Zhang Haotian" data-zh="张浩天">张浩天</strong>
+          <small data-en="Zhang Haotian · Carl" data-zh="Zhang Haotian · Carl">Zhang Haotian · Carl</small>
+        </span>
+        <em>PRO</em>
+      </div>
       <dt data-en="Author" data-zh="作者">Author</dt>
       <dd data-en="Zhang Haotian / Carl" data-zh="张浩天 / Carl">Zhang Haotian / Carl</dd>
       <dt data-en="Affiliation" data-zh="所属">Affiliation</dt>
@@ -115,12 +127,72 @@
       <p data-en="A future-space explorer connecting <span class='accent'>design</span>, brand, and technology." data-zh="连接<span class='accent'>设计</span>、品牌与技术的未来空间探索者。">
         A future-space explorer connecting <span class="accent">design</span>, brand, and technology.
       </p>
+      <div class="skill-radar" aria-label="Capability radar">
+        <div class="radar-copy">
+          <span class="radar-kicker" data-en="Capability radar / live scan" data-zh="能力雷达 / 实时扫描">Capability radar / live scan</span>
+          <h3 data-en="Where the model is strongest." data-zh="当前模型优势区。">Where the model is strongest.</h3>
+          <p data-en="A soft map of Carl's design operating system, calibrated across spatial thinking, AI workflows, visual output, and narrative strategy." data-zh="一张关于 Carl 设计操作系统的轻量地图，校准于空间思考、AI 工作流、视觉输出与叙事策略。">A soft map of Carl's design operating system, calibrated across spatial thinking, AI workflows, visual output, and narrative strategy.</p>
+        </div>
+        <div class="radar-visual">
+          <svg class="radar-svg" viewBox="0 0 220 220" role="img" aria-label="Spatial strategy 92, AI workflow 88, visual systems 86, material and light 80, brand thinking 84, narrative design 90">
+            <polygon class="radar-ring ring-outer" points="110,32 178,71 178,149 110,188 42,149 42,71"></polygon>
+            <polygon class="radar-ring" points="110,52 160,81 160,139 110,168 60,139 60,81"></polygon>
+            <polygon class="radar-ring" points="110,72 143,91 143,129 110,148 77,129 77,91"></polygon>
+            <line class="radar-axis" x1="110" y1="110" x2="110" y2="32"></line>
+            <line class="radar-axis" x1="110" y1="110" x2="178" y2="71"></line>
+            <line class="radar-axis" x1="110" y1="110" x2="178" y2="149"></line>
+            <line class="radar-axis" x1="110" y1="110" x2="110" y2="188"></line>
+            <line class="radar-axis" x1="110" y1="110" x2="42" y2="149"></line>
+            <line class="radar-axis" x1="110" y1="110" x2="42" y2="71"></line>
+            <polygon class="radar-shape" points="110,38 169,76 168,144 110,172 53,144 49,75"></polygon>
+            <circle class="radar-point" cx="110" cy="38" r="3"></circle>
+            <circle class="radar-point" cx="169" cy="76" r="3"></circle>
+            <circle class="radar-point" cx="168" cy="144" r="3"></circle>
+            <circle class="radar-point" cx="110" cy="172" r="3"></circle>
+            <circle class="radar-point" cx="53" cy="144" r="3"></circle>
+            <circle class="radar-point" cx="49" cy="75" r="3"></circle>
+            <text class="radar-label label-top" x="110" y="20" text-anchor="middle">
+              <tspan data-en="SPATIAL" data-zh="空间">SPATIAL</tspan>
+              <tspan x="110" dy="10">92</tspan>
+            </text>
+            <text class="radar-label label-right" x="198" y="68" text-anchor="start">
+              <tspan data-en="AI FLOW" data-zh="AI 工作流">AI FLOW</tspan>
+              <tspan x="198" dy="10">88</tspan>
+            </text>
+            <text class="radar-label label-right" x="198" y="153" text-anchor="start">
+              <tspan data-en="VISUAL" data-zh="视觉">VISUAL</tspan>
+              <tspan x="198" dy="10">86</tspan>
+            </text>
+            <text class="radar-label label-bottom" x="110" y="205" text-anchor="middle">
+              <tspan data-en="LIGHT" data-zh="材料光感">LIGHT</tspan>
+              <tspan x="110" dy="10">80</tspan>
+            </text>
+            <text class="radar-label label-left" x="22" y="153" text-anchor="end">
+              <tspan data-en="BRAND" data-zh="品牌">BRAND</tspan>
+              <tspan x="22" dy="10">84</tspan>
+            </text>
+            <text class="radar-label label-left" x="22" y="68" text-anchor="end">
+              <tspan data-en="NARRATIVE" data-zh="叙事">NARRATIVE</tspan>
+              <tspan x="22" dy="10">90</tspan>
+            </text>
+          </svg>
+        </div>
+        <div class="radar-stats">
+          <div class="skill-meter" style="--score:.92"><span data-en="Spatial strategy" data-zh="空间策略">Spatial strategy</span><b>92</b></div>
+          <div class="skill-meter" style="--score:.88"><span data-en="AI workflow" data-zh="AI 工作流">AI workflow</span><b>88</b></div>
+          <div class="skill-meter" style="--score:.86"><span data-en="Visual systems" data-zh="视觉系统">Visual systems</span><b>86</b></div>
+          <div class="skill-meter" style="--score:.80"><span data-en="Material / light" data-zh="材料 / 光">Material / light</span><b>80</b></div>
+          <div class="skill-meter" style="--score:.84"><span data-en="Brand thinking" data-zh="品牌思维">Brand thinking</span><b>84</b></div>
+          <div class="skill-meter" style="--score:.90"><span data-en="Narrative design" data-zh="叙事设计">Narrative design</span><b>90</b></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects" class="reveal">
+  <div class="projects-sticky">
   <div class="works-backdrop" aria-hidden="true">WORKS</div>
   <div class="section-label" data-en="§ 02 — CARL-1 output gallery" data-zh="§ 02 — CARL-1 输出画廊">§ 02 — CARL-1 output gallery</div>
   <div class="bench-head">
@@ -226,6 +298,7 @@
     </article>
   </div>
   <div class="works-progress" aria-hidden="true"><span></span></div>
+  </div>
 </section>
 
 <!-- TIMELINE -->
@@ -321,12 +394,12 @@
 <section id="contact" class="reveal">
   <div class="section-label" data-en="§ 05 — Deployment" data-zh="§ 05 — 部署">§ 05 — Deployment</div>
 
-  <h2 class="contact-headline" data-en="You've evaluated the model. <em>Deploy</em> it — <a href='mailto:hello@carl.design'>hello@carl.design</a>." data-zh="你已经评估完这个模型。现在可以<em>部署</em>它 —— <a href='mailto:hello@carl.design'>hello@carl.design</a>。">You've evaluated the model. <em>Deploy</em> it — <a href="mailto:hello@carl.design">hello@carl.design</a>.</h2>
+  <h2 class="contact-headline" data-en="You've evaluated the model. <em>Deploy</em> it — <a href='mailto:zhangttovo@126.com'>zhangttovo@126.com</a>." data-zh="你已经评估完这个模型。现在可以<em>部署</em>它 —— <a href='mailto:zhangttovo@126.com'>zhangttovo@126.com</a>。">You've evaluated the model. <em>Deploy</em> it — <a href="mailto:zhangttovo@126.com">zhangttovo@126.com</a>.</h2>
 
   <div class="contact-grid">
     <div>
       <h4 data-en="Work" data-zh="合作">Work</h4>
-      <a href="mailto:hello@carl.design">hello@carl.design</a>
+      <a href="mailto:zhangttovo@126.com">zhangttovo@126.com</a>
       <a href="#">View CV (PDF)</a>
       <a href="#">Download portfolio</a>
     </div>
@@ -374,6 +447,9 @@
   <div style="color:#555;font-size:10px;line-height:1.5;margin-top:8px">Pick a vibe. Saved to project.</div>
 </div>
 
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

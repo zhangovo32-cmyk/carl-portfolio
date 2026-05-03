@@ -4,6 +4,85 @@
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// ---------- Lenis + GSAP smooth scroll foundation ----------
+(() => {
+  if (prefersReducedMotion) return;
+  if (!window.Lenis || !window.gsap || !window.ScrollTrigger) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true
+  });
+
+  lenis.on('scroll', ScrollTrigger.update);
+
+  gsap.ticker.add(time => {
+    lenis.raf(time * 1000);
+  });
+  gsap.ticker.lagSmoothing(0);
+
+  window.__carlLenis = lenis;
+})();
+
+// ---------- Inverted custom cursor ----------
+(() => {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  const cursor = document.getElementById('custom-cursor');
+  if (!cursor) return;
+
+  const interactiveSelector = [
+    'a',
+    'button',
+    'input',
+    'textarea',
+    'select',
+    '[role="button"]',
+    '.project-panel',
+    '.review',
+    '.sw',
+    '.hover-target'
+  ].join(',');
+
+  let x = -120;
+  let y = -120;
+  let tx = x;
+  let ty = y;
+  let rafId = 0;
+
+  document.body.classList.add('has-custom-cursor');
+
+  const render = () => {
+    x += (tx - x) * 0.36;
+    y += (ty - y) * 0.36;
+    cursor.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+    if (Math.abs(tx - x) < 0.08 && Math.abs(ty - y) < 0.08) {
+      x = tx;
+      y = ty;
+      cursor.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+      rafId = 0;
+      return;
+    }
+    rafId = requestAnimationFrame(render);
+  };
+
+  window.addEventListener('pointermove', e => {
+    tx = e.clientX;
+    ty = e.clientY;
+    document.body.classList.add('cursor-ready');
+    cursor.classList.toggle('is-hovering', Boolean(e.target.closest?.(interactiveSelector)));
+    if (!rafId) rafId = requestAnimationFrame(render);
+  }, { passive: true });
+
+  window.addEventListener('pointerleave', () => {
+    document.body.classList.remove('cursor-ready');
+    cursor.classList.remove('is-hovering');
+  }, { passive: true });
+})();
+
 // ---------- Intro loader ----------
 (() => {
   if (prefersReducedMotion) return;
@@ -423,103 +502,61 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   });
 })();
 
-// ---------- Works scroll presence ----------
+// ---------- Works horizontal scroll: load-safe GSAP pin ----------
 (() => {
   if (prefersReducedMotion) return;
+  if (!window.gsap || !window.ScrollTrigger) return;
+
   const section = document.getElementById('projects');
-  const rail = document.querySelector('.projects-rail');
-  if (!section) return;
+  const track = section?.querySelector('.projects-rail');
+  if (!section || !track) return;
 
-  let ticking = false;
-  let railTarget = rail?.scrollLeft || 0;
-  let railAnimating = false;
-  let wheelActive = false;
-  let wheelIdleTimer;
-  const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
-  const maxRailScroll = () => rail ? Math.max(0, rail.scrollWidth - rail.clientWidth) : 0;
+  gsap.registerPlugin(ScrollTrigger);
 
-  const animateRail = () => {
-    if (!rail) return;
+  const init = () => {
+    if (!window.matchMedia('(min-width: 641px)').matches) return;
 
-    const diff = railTarget - rail.scrollLeft;
-    if (Math.abs(diff) < 0.45) {
-      rail.scrollLeft = railTarget;
-      railAnimating = false;
-      if (!wheelActive) rail.classList.remove('is-wheel-scrolling');
-      requestTick();
-      return;
-    }
+    section.classList.add('is-horizontal-ready');
+    gsap.set(track, { x: 0 });
 
-    rail.scrollLeft += diff * 0.105;
-    requestTick();
-    requestAnimationFrame(animateRail);
+    const getScrollAmount = () => {
+      const viewportWidth = document.documentElement.clientWidth;
+      return Math.max(0, track.scrollWidth - viewportWidth);
+    };
+
+    const tween = gsap.to(track, {
+      x: () => -getScrollAmount(),
+      ease: 'none',
+      force3D: true,
+      overwrite: true,
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: () => `+=${getScrollAmount()}`,
+        pin: true,
+        pinType: 'fixed',
+        scrub: 1,
+        invalidateOnRefresh: true,
+        onUpdate: self => {
+          section.style.setProperty('--works-progress', self.progress.toFixed(3));
+        }
+      }
+    });
+
+    let resizeTimer = 0;
+    const refresh = (delay = 0) => {
+      clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => ScrollTrigger.refresh(), delay);
+    };
+
+    refresh(500);
+    document.fonts?.ready?.then(() => refresh(0));
+    window.addEventListener('resize', () => refresh(200), { passive: true });
+    window.__carlWorksTrigger = tween.scrollTrigger;
   };
 
-  const requestRailAnimation = () => {
-    if (railAnimating) return;
-    railAnimating = true;
-    requestAnimationFrame(animateRail);
-  };
-
-  const normalizeWheelDelta = e => {
-    const primaryDelta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-    const unit = e.deltaMode === 1 ? 38 : e.deltaMode === 2 ? rail.clientWidth * 0.86 : 1;
-    const raw = primaryDelta * unit;
-    return Math.sign(raw) * Math.min(Math.abs(raw), 160);
-  };
-
-  const render = () => {
-    ticking = false;
-    let progress = 0;
-    if (rail && rail.scrollWidth > rail.clientWidth) {
-      progress = rail.scrollLeft / (rail.scrollWidth - rail.clientWidth);
-    } else {
-      const rect = section.getBoundingClientRect();
-      const range = rect.height + window.innerHeight;
-      progress = (window.innerHeight - rect.top) / range;
-    }
-    section.style.setProperty('--works-progress', clamp(progress, 0, 1).toFixed(3));
-  };
-
-  const requestTick = () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(render);
-  };
-
-  rail?.addEventListener('wheel', e => {
-    if (window.matchMedia('(max-width: 640px)').matches) return;
-    const maxScroll = maxRailScroll();
-    if (!maxScroll) return;
-
-    const delta = normalizeWheelDelta(e);
-    const atStart = railTarget <= 1 && delta < 0;
-    const atEnd = railTarget >= maxScroll - 1 && delta > 0;
-    if (atStart || atEnd) return;
-
-    e.preventDefault();
-    wheelActive = true;
-    rail.classList.add('is-wheel-scrolling');
-    clearTimeout(wheelIdleTimer);
-    wheelIdleTimer = setTimeout(() => {
-      wheelActive = false;
-      if (!railAnimating) rail.classList.remove('is-wheel-scrolling');
-    }, 420);
-
-    railTarget = clamp(railTarget + delta * 1.08, 0, maxScroll);
-    requestRailAnimation();
-    requestTick();
-  }, { passive: false });
-  rail?.addEventListener('scroll', () => {
-    if (!railAnimating) railTarget = clamp(rail.scrollLeft, 0, maxRailScroll());
-    requestTick();
-  }, { passive: true });
-  window.addEventListener('scroll', requestTick, { passive: true });
-  window.addEventListener('resize', () => {
-    railTarget = clamp(railTarget, 0, maxRailScroll());
-    requestTick();
-  });
-  requestTick();
+  if (document.readyState === 'complete') init();
+  else window.addEventListener('load', init, { once: true });
 })();
 
 // ---------- Tweaks panel ----------
