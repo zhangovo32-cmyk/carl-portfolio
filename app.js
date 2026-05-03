@@ -275,7 +275,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
       '.abstract-meta',
       '.abstract-body',
       '.desk-readout > div',
-      '.project',
+      '.project-panel',
       '.timeline-item',
       '.review',
       '.contact-headline',
@@ -404,31 +404,21 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   requestTick();
 })();
 
-// ---------- Work card interactions ----------
+// ---------- Work panel interactions ----------
 (() => {
-  const projects = [...document.querySelectorAll('.project')];
-  if (!projects.length) return;
-  const canHover = window.matchMedia('(hover: hover)').matches;
+  const panels = [...document.querySelectorAll('.project-panel')];
+  if (!panels.length) return;
 
-  projects.forEach(project => {
-    project.addEventListener('mousemove', e => {
-      const rect = project.getBoundingClientRect();
-      project.style.setProperty('--mx', `${e.clientX - rect.left}px`);
-      project.style.setProperty('--my', `${e.clientY - rect.top}px`);
+  panels.forEach(panel => {
+    panel.addEventListener('mousemove', e => {
+      const rect = panel.getBoundingClientRect();
+      panel.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+      panel.style.setProperty('--my', `${e.clientY - rect.top}px`);
     });
 
-    project.addEventListener('mouseleave', () => {
-      project.style.setProperty('--mx', '50%');
-      project.style.setProperty('--my', '50%');
-      if (canHover) project.classList.remove('is-flipped');
-    });
-
-    project.addEventListener('click', () => {
-      if (canHover) return;
-      projects.forEach(item => {
-        if (item !== project) item.classList.remove('is-flipped');
-      });
-      project.classList.toggle('is-flipped');
+    panel.addEventListener('mouseleave', () => {
+      panel.style.setProperty('--mx', '50%');
+      panel.style.setProperty('--my', '50%');
     });
   });
 })();
@@ -437,17 +427,58 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 (() => {
   if (prefersReducedMotion) return;
   const section = document.getElementById('projects');
+  const rail = document.querySelector('.projects-rail');
   if (!section) return;
 
   let ticking = false;
+  let railTarget = rail?.scrollLeft || 0;
+  let railAnimating = false;
+  let wheelActive = false;
+  let wheelIdleTimer;
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+  const maxRailScroll = () => rail ? Math.max(0, rail.scrollWidth - rail.clientWidth) : 0;
+
+  const animateRail = () => {
+    if (!rail) return;
+
+    const diff = railTarget - rail.scrollLeft;
+    if (Math.abs(diff) < 0.45) {
+      rail.scrollLeft = railTarget;
+      railAnimating = false;
+      if (!wheelActive) rail.classList.remove('is-wheel-scrolling');
+      requestTick();
+      return;
+    }
+
+    rail.scrollLeft += diff * 0.105;
+    requestTick();
+    requestAnimationFrame(animateRail);
+  };
+
+  const requestRailAnimation = () => {
+    if (railAnimating) return;
+    railAnimating = true;
+    requestAnimationFrame(animateRail);
+  };
+
+  const normalizeWheelDelta = e => {
+    const primaryDelta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    const unit = e.deltaMode === 1 ? 38 : e.deltaMode === 2 ? rail.clientWidth * 0.86 : 1;
+    const raw = primaryDelta * unit;
+    return Math.sign(raw) * Math.min(Math.abs(raw), 160);
+  };
 
   const render = () => {
     ticking = false;
-    const rect = section.getBoundingClientRect();
-    const range = rect.height + window.innerHeight;
-    const progress = clamp((window.innerHeight - rect.top) / range, 0, 1);
-    section.style.setProperty('--works-progress', progress.toFixed(3));
+    let progress = 0;
+    if (rail && rail.scrollWidth > rail.clientWidth) {
+      progress = rail.scrollLeft / (rail.scrollWidth - rail.clientWidth);
+    } else {
+      const rect = section.getBoundingClientRect();
+      const range = rect.height + window.innerHeight;
+      progress = (window.innerHeight - rect.top) / range;
+    }
+    section.style.setProperty('--works-progress', clamp(progress, 0, 1).toFixed(3));
   };
 
   const requestTick = () => {
@@ -456,8 +487,38 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
     requestAnimationFrame(render);
   };
 
+  rail?.addEventListener('wheel', e => {
+    if (window.matchMedia('(max-width: 640px)').matches) return;
+    const maxScroll = maxRailScroll();
+    if (!maxScroll) return;
+
+    const delta = normalizeWheelDelta(e);
+    const atStart = railTarget <= 1 && delta < 0;
+    const atEnd = railTarget >= maxScroll - 1 && delta > 0;
+    if (atStart || atEnd) return;
+
+    e.preventDefault();
+    wheelActive = true;
+    rail.classList.add('is-wheel-scrolling');
+    clearTimeout(wheelIdleTimer);
+    wheelIdleTimer = setTimeout(() => {
+      wheelActive = false;
+      if (!railAnimating) rail.classList.remove('is-wheel-scrolling');
+    }, 420);
+
+    railTarget = clamp(railTarget + delta * 1.08, 0, maxScroll);
+    requestRailAnimation();
+    requestTick();
+  }, { passive: false });
+  rail?.addEventListener('scroll', () => {
+    if (!railAnimating) railTarget = clamp(rail.scrollLeft, 0, maxRailScroll());
+    requestTick();
+  }, { passive: true });
   window.addEventListener('scroll', requestTick, { passive: true });
-  window.addEventListener('resize', requestTick);
+  window.addEventListener('resize', () => {
+    railTarget = clamp(railTarget, 0, maxRailScroll());
+    requestTick();
+  });
   requestTick();
 })();
 
