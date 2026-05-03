@@ -523,6 +523,12 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
       const viewportWidth = document.documentElement.clientWidth;
       return Math.max(0, track.scrollWidth - viewportWidth);
     };
+    // Sync Lenis whenever the pin boundary is crossed so accumulated
+    // momentum cannot overshoot after the fixed section is released.
+    const syncLenis = () => {
+      const lenis = window.__carlLenis;
+      if (lenis) lenis.scrollTo(window.scrollY, { immediate: true });
+    };
 
     const tween = gsap.to(track, {
       x: () => -getScrollAmount(),
@@ -536,10 +542,15 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
         pin: true,
         pinType: 'fixed',
         scrub: 1,
+        anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate: self => {
           section.style.setProperty('--works-progress', self.progress.toFixed(3));
-        }
+        },
+        onEnter: syncLenis,
+        onLeave: syncLenis,
+        onEnterBack: syncLenis,
+        onLeaveBack: syncLenis
       }
     });
 
