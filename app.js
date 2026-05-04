@@ -502,72 +502,18 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   });
 })();
 
-// ---------- Works horizontal scroll: load-safe GSAP pin ----------
+// ---------- Works gallery: stable vertical case stack ----------
 (() => {
-  if (prefersReducedMotion) return;
-  if (!window.gsap || !window.ScrollTrigger) return;
-
   const section = document.getElementById('projects');
   const track = section?.querySelector('.projects-rail');
   if (!section || !track) return;
 
-  gsap.registerPlugin(ScrollTrigger);
-
-  const init = () => {
-    if (!window.matchMedia('(min-width: 641px)').matches) return;
-
-    section.classList.add('is-horizontal-ready');
-    gsap.set(track, { x: 0 });
-
-    const getScrollAmount = () => {
-      const viewportWidth = document.documentElement.clientWidth;
-      return Math.max(0, track.scrollWidth - viewportWidth);
-    };
-    // Sync Lenis whenever the pin boundary is crossed so accumulated
-    // momentum cannot overshoot after the fixed section is released.
-    const syncLenis = () => {
-      const lenis = window.__carlLenis;
-      if (lenis) lenis.scrollTo(window.scrollY, { immediate: true });
-    };
-
-    const tween = gsap.to(track, {
-      x: () => -getScrollAmount(),
-      ease: 'none',
-      force3D: true,
-      overwrite: true,
-      scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: () => `+=${getScrollAmount()}`,
-        pin: true,
-        pinType: 'fixed',
-        scrub: 1,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        onUpdate: self => {
-          section.style.setProperty('--works-progress', self.progress.toFixed(3));
-        },
-        onEnter: syncLenis,
-        onLeave: syncLenis,
-        onEnterBack: syncLenis,
-        onLeaveBack: syncLenis
-      }
-    });
-
-    let resizeTimer = 0;
-    const refresh = (delay = 0) => {
-      clearTimeout(resizeTimer);
-      resizeTimer = window.setTimeout(() => ScrollTrigger.refresh(), delay);
-    };
-
-    refresh(500);
-    document.fonts?.ready?.then(() => refresh(0));
-    window.addEventListener('resize', () => refresh(200), { passive: true });
-    window.__carlWorksTrigger = tween.scrollTrigger;
-  };
-
-  if (document.readyState === 'complete') init();
-  else window.addEventListener('load', init, { once: true });
+  window.__carlWorksTrigger?.kill?.();
+  window.__carlWorksTrigger = null;
+  section.classList.remove('is-horizontal-ready');
+  section.style.removeProperty('height');
+  section.style.setProperty('--works-progress', '1');
+  track.style.removeProperty('transform');
 })();
 
 // ---------- Tweaks panel ----------

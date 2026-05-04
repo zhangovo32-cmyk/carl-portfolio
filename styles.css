@@ -1194,28 +1194,10 @@ body.is-loading .hero-pin {
 #projects.reveal.in {
   transform: none;
 }
-#projects.is-horizontal-ready {
-  height: 100vh;
-  width: 100vw;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
 .projects-sticky {
   position: relative;
   max-width: 1680px;
   margin: 0 auto;
-}
-#projects.is-horizontal-ready .projects-sticky {
-  width: 100%;
-  max-width: none;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: clamp(72px, 8vh, 112px) 32px clamp(64px, 7vh, 92px);
 }
 .works-backdrop {
   position: absolute;
@@ -1257,25 +1239,20 @@ body.is-loading .hero-pin {
   padding: 7px 10px;
 }
 .projects-rail {
-  display: flex;
-  gap: 26px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(22px, 3vw, 42px);
   overflow: visible;
   padding: 0;
   margin: 0;
   scroll-snap-type: none;
-}
-#projects.is-horizontal-ready .projects-rail {
-  width: max-content;
-  max-width: none;
-  will-change: transform;
 }
 .projects-rail::-webkit-scrollbar { height: 6px; }
 .projects-rail::-webkit-scrollbar-track { background: rgba(255,255,255,0.08); }
 .projects-rail::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 999px; }
 
 .project-panel {
-  flex: 0 0 min(82vw, 1180px);
-  flex-shrink: 0;
+  flex: 0 1 auto;
   min-height: clamp(520px, 62vh, 700px);
   position: relative;
   display: grid;
@@ -1484,9 +1461,6 @@ body.is-loading .hero-pin {
   margin-top: 26px;
   background: rgba(255,255,255,0.12);
   overflow: hidden;
-}
-#projects.is-horizontal-ready .works-progress {
-  display: block;
 }
 .works-progress span {
   display: block;
