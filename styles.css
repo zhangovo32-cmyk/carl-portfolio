@@ -1878,8 +1878,18 @@ body.is-loading .hero-pin {
     transform: translateY(var(--reveal-y, 0px));
   }
   .project-visual {
-    min-height: 56vw;
-    aspect-ratio: 16 / 10;
+    min-height: clamp(220px, 70vw, 340px);
+    aspect-ratio: 16 / 11;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.16)),
+      var(--project-image) center / contain no-repeat,
+      #f3f2ed;
+    transform: none;
+  }
+  .project-panel:hover .project-visual,
+  .project-featured:hover .project-visual {
+    transform: none;
+    filter: saturate(0.96) contrast(1.02);
   }
   .project-info {
     gap: 16px;

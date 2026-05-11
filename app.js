@@ -4,6 +4,15 @@
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// ---------- Section order ----------
+(() => {
+  const hero = document.getElementById('hero');
+  const projects = document.getElementById('projects');
+  if (hero && projects && hero.nextElementSibling !== projects) {
+    hero.insertAdjacentElement('afterend', projects);
+  }
+})();
+
 // ---------- Lenis + GSAP smooth scroll foundation ----------
 (() => {
   if (prefersReducedMotion) return;
