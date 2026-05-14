@@ -19,7 +19,10 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   if (!panels.length) return;
 
   const loadPanel = panel => {
-    const src = panel.dataset.projectImage;
+    const shouldUseMobile = window.matchMedia('(max-width: 760px)').matches;
+    const src = shouldUseMobile && panel.dataset.projectImageMobile
+      ? panel.dataset.projectImageMobile
+      : panel.dataset.projectImage;
     if (!src || panel.dataset.imageLoaded === 'true') return;
     panel.style.setProperty('--project-image', `url("${src}")`);
     panel.dataset.imageLoaded = 'true';
@@ -38,7 +41,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
       loadPanel(entry.target);
       observer.unobserve(entry.target);
     });
-  }, { rootMargin: '420px 0px' });
+  }, { rootMargin: '220px 0px' });
 
   panels.slice(1).forEach(panel => observer.observe(panel));
 })();

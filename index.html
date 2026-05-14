@@ -6,7 +6,8 @@
 <title>CARL-1 · Zhang Haotian</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -36,7 +37,7 @@
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-bg">
-    <img src="assets/desk.jpg?v=2" alt="Carl's desk: sketches pinned on the wall, an open sketchbook, a monitor, headphones, a green mug — the training environment" fetchpriority="high" decoding="async">
+    <img src="assets/desk.jpg?v=2" srcset="assets/desk-mobile.jpg 900w, assets/desk.jpg 1448w" sizes="100vw" alt="Carl's desk: sketches pinned on the wall, an open sketchbook, a monitor, headphones, a green mug — the training environment" fetchpriority="high" decoding="async">
     <div class="hero-bg-scan"></div>
   </div>
   <div class="hero-glow"></div>
@@ -209,7 +210,7 @@
   </div>
 
   <div class="projects-rail" aria-label="Selected CARL-1 design outputs">
-    <article class="project-panel project-featured" data-project-image="assets/fuhe-lock-hero.jpg">
+    <article class="project-panel project-featured" data-project-image="assets/fuhe-lock-hero.jpg" data-project-image-mobile="assets/fuhe-lock-hero-mobile.jpg">
       <div class="project-visual" aria-hidden="true"></div>
       <div class="project-info">
         <div class="project-kicker">
@@ -227,7 +228,7 @@
       </div>
     </article>
 
-    <article class="project-panel" data-project-image="assets/coop-section.jpg">
+    <article class="project-panel" data-project-image="assets/coop-section.jpg" data-project-image-mobile="assets/coop-section-mobile.jpg">
       <div class="project-visual" aria-hidden="true"></div>
       <div class="project-info">
         <div class="project-kicker">
@@ -245,7 +246,7 @@
       </div>
     </article>
 
-    <article class="project-panel" data-project-image="assets/wow-alternative-furniture.jpg">
+    <article class="project-panel" data-project-image="assets/wow-alternative-furniture.jpg" data-project-image-mobile="assets/wow-alternative-furniture-mobile.jpg">
       <div class="project-visual" aria-hidden="true"></div>
       <div class="project-info">
         <div class="project-kicker">
@@ -263,7 +264,7 @@
       </div>
     </article>
 
-    <article class="project-panel" data-project-image="assets/retail-pop-up.jpg">
+    <article class="project-panel" data-project-image="assets/retail-pop-up.jpg" data-project-image-mobile="assets/retail-pop-up-mobile.jpg">
       <div class="project-visual" aria-hidden="true"></div>
       <div class="project-info">
         <div class="project-kicker">
@@ -281,7 +282,7 @@
       </div>
     </article>
 
-    <article class="project-panel" data-project-image="assets/zhoubi-board-02.jpg">
+    <article class="project-panel" data-project-image="assets/zhoubi-board-02.jpg" data-project-image-mobile="assets/zhoubi-board-02-mobile.jpg">
       <div class="project-visual" aria-hidden="true"></div>
       <div class="project-info">
         <div class="project-kicker">
