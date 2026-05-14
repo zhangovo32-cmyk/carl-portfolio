@@ -13,6 +13,36 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   }
 })();
 
+// ---------- Lazy project visuals ----------
+(() => {
+  const panels = Array.from(document.querySelectorAll('.project-panel[data-project-image]'));
+  if (!panels.length) return;
+
+  const loadPanel = panel => {
+    const src = panel.dataset.projectImage;
+    if (!src || panel.dataset.imageLoaded === 'true') return;
+    panel.style.setProperty('--project-image', `url("${src}")`);
+    panel.dataset.imageLoaded = 'true';
+  };
+
+  loadPanel(panels[0]);
+
+  if (!('IntersectionObserver' in window)) {
+    panels.forEach(loadPanel);
+    return;
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      loadPanel(entry.target);
+      observer.unobserve(entry.target);
+    });
+  }, { rootMargin: '420px 0px' });
+
+  panels.slice(1).forEach(panel => observer.observe(panel));
+})();
+
 // ---------- Lenis + GSAP smooth scroll foundation ----------
 (() => {
   if (prefersReducedMotion) return;
